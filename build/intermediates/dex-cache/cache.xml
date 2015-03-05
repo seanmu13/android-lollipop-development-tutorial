@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\seanmu13\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="D:\Dropbox\Dev\Android\Calculator1\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-8fa19bf329af58c0d3446fe7bd52961b66bbac51.jar" />
+    </item>
+    <item
+        jar="D:\Dropbox\Dev\Android\Calculator1\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="D:\Dropbox\Dev\Android\Calculator1\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-cd9767678a806c5c7a7b51ed47b6ee17632453cf.jar" />
+    </item>
+    <item
+        jar="D:\Dropbox\Dev\Android\Calculator1\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="D:\Dropbox\Dev\Android\Calculator1\app\build\intermediates\pre-dexed\debug\classes-23a77fc80989eaa87d14a449274b2ee57b30dfbf.jar" />
+    </item>
+
+</items>
