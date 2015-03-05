@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">My Test Project</string>
+
+    <string name="hello_world">Hellsdfsdfsdfworld!</string>
+    <string name="action_settings">Settings</string>
+</resources>
