@@ -16,8 +16,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
 
-    private static final String LOG_TAG = "MainActivity";
-    //private List<Photo> mPhotosList = new ArrayList<Photo>();
     private RecyclerView mRecyclerView;
     private FlickrRecyclerViewAdapter flickrRecyclerViewAdapter;
 
@@ -41,7 +39,10 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onItemLongClick(View view, int position) {
-                Toast.makeText(MainActivity.this,"Long tap",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this,"Long tap",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this,ViewPhotoDetailsActivity.class);
+                intent.putExtra(PHOTO_TRANSFER, flickrRecyclerViewAdapter.getPhoto(position));
+                startActivity(intent);
             }
         }));
     }
