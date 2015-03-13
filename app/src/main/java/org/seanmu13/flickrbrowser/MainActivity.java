@@ -10,13 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends BaseActivity {
 
     private static final String LOG_TAG = "MainActivity";
-    private List<Photo> mPhotosList = new ArrayList<Photo>();
+    //private List<Photo> mPhotosList = new ArrayList<Photo>();
     private RecyclerView mRecyclerView;
     private FlickrRecyclerViewAdapter flickrRecyclerViewAdapter;
 
@@ -30,23 +29,22 @@ public class MainActivity extends BaseActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ProcessPhotos processPhotos = new ProcessPhotos("android,lollipop",true);
-        processPhotos.execute();
+        flickrRecyclerViewAdapter = new FlickrRecyclerViewAdapter(MainActivity.this, new ArrayList<Photo>());
+        mRecyclerView.setAdapter(flickrRecyclerViewAdapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(flickrRecyclerViewAdapter != null){
-            String query = getSavedPreferenceData(FLICKR_QUERY);
-            if (query.length() > 0){
-                ProcessPhotos processPhotos = new ProcessPhotos(query, true);
-                processPhotos.execute();
-            }
+
+        String query = getSavedPreferenceData(FLICKR_QUERY);
+        if (query.length() > 0) {
+            ProcessPhotos processPhotos = new ProcessPhotos(query, true);
+            processPhotos.execute();
         }
     }
 
-    private String getSavedPreferenceData(String key){
+    private String getSavedPreferenceData(String key) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         return sharedPref.getString(key, "");
     }
@@ -70,8 +68,8 @@ public class MainActivity extends BaseActivity {
             return true;
         }
 
-        if(id == R.id.menu_search) {
-            Intent intent = new Intent(this,SearchActivity.class);
+        if (id == R.id.menu_search) {
+            Intent intent = new Intent(this, SearchActivity.class);
             startActivity(intent);
             return true;
         }
@@ -85,7 +83,7 @@ public class MainActivity extends BaseActivity {
             super(searchCriteria, matchAll);
         }
 
-        public void execute () {
+        public void execute() {
             super.execute();
             ProcessData processData = new ProcessData();
             processData.execute();
@@ -96,8 +94,7 @@ public class MainActivity extends BaseActivity {
             @Override
             protected void onPostExecute(String webData) {
                 super.onPostExecute(webData);
-                flickrRecyclerViewAdapter = new FlickrRecyclerViewAdapter(MainActivity.this, getmPhotos());
-                mRecyclerView.setAdapter(flickrRecyclerViewAdapter);
+                flickrRecyclerViewAdapter.loadNewData(getPhotos());
             }
         }
     }

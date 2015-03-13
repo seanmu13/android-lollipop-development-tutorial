@@ -49,7 +49,7 @@ public class GetFlickrJsonData extends GetRawData {
         return mDestinationUri != null;
     }
 
-    public List<Photo> getmPhotos() {
+    public List<Photo> getPhotos() {
         return mPhotos;
     }
 
