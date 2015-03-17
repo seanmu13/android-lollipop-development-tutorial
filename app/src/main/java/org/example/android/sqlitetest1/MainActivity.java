@@ -1,9 +1,12 @@
 package org.example.android.sqlitetest1;
 
-import android.support.v7.app.ActionBarActivity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +15,26 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SQLiteDatabase sqLiteDatabase = getBaseContext().openOrCreateDatabase("sqlite-test-1.db", MODE_PRIVATE, null);
+        sqLiteDatabase.execSQL("DROP TABLE contacts");
+        sqLiteDatabase.execSQL("CREATE TABLE contacts(name Text,phone INTEGER,email TEXT)");
+        sqLiteDatabase.execSQL("INSERT INTO contacts VALUES('tim',6456789,'tim@email.com')");
+        sqLiteDatabase.execSQL("INSERT INTO contacts VALUES('Fred',12345,'fred@nurk.com')");
+        Cursor query = sqLiteDatabase.rawQuery("SELECT * FROM contacts", null);
+
+        if (query.moveToFirst()) {
+            do {
+                // Cycle through all records
+                String name = query.getString(0);
+                int phone = query.getInt(1);
+                String email = query.getString(2);
+                Toast.makeText(getBaseContext(), "Name = " + name + " phone = " + phone + " email = " + email, Toast.LENGTH_LONG).show();
+            } while (query.moveToNext());
+        } else {
+            Toast.makeText(getBaseContext(), "Error retrieving data", Toast.LENGTH_LONG).show();
+        }
+
+        sqLiteDatabase.close();
     }
 
 
