@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Frame Layout Example</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="redButton">Person 1</string>
+    <string name="greenButton">Person 2</string>
+</resources>
