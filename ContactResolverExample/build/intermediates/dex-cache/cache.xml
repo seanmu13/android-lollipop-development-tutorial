@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\seanmu13\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="D:\Dropbox\dev\android\ContactResolverExample\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-8fa19bf329af58c0d3446fe7bd52961b66bbac51.jar" />
+    </item>
+    <item
+        jar="D:\Dropbox\dev\android\ContactResolverExample\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="D:\Dropbox\dev\android\ContactResolverExample\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-41684460a110a5d816ed0fabb2079cf27cdaaa4f.jar" />
+    </item>
+    <item
+        jar="D:\Dropbox\dev\android\ContactResolverExample\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="D:\Dropbox\dev\android\ContactResolverExample\app\build\intermediates\pre-dexed\debug\classes-c1833bc48b33d1567da79f176491b663a8774b33.jar" />
+    </item>
+    <item
+        jar="D:\Dropbox\dev\android\ContactResolverExample\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="D:\Dropbox\dev\android\ContactResolverExample\app\build\intermediates\pre-dexed\debug\classes-64458a4027dce2d35e04d0c2d6eea07a47000c15.jar" />
+    </item>
+
+</items>
