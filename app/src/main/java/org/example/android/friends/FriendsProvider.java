@@ -137,7 +137,6 @@ public class FriendsProvider extends ContentProvider {
                 String selectionCriteria = BaseColumns._ID + "=" + id
                         + (!TextUtils.isEmpty(selection) ? "AND (" + selection + ")" : "");
                 return db.delete(FriendsDatabase.Tables.FRIENDS, selectionCriteria, selectionArgs);
-            break;
             default:
                 throw new IllegalArgumentException("Unknown Uri: " + uri);
         }

@@ -37,7 +37,7 @@ public class FriendsDatabase extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         int version = oldVersion;
 
-        if (version = 1) {
+        if (version == 1) {
             // Add some extra fields to the database without deleting existing data
             version = 2;
         }
