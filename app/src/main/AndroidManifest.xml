@@ -23,7 +23,7 @@
             android:name="org.example.android.friends.FriendsProvider"
             android:exported="true"
             android:readPermission="org.example.android.friends.provider.READWRITE"
-            android:writePermission="org.example.android.friends.provider.READWRITE"
+            android:writePermission="org.example.android.friends.provider.READWRITE" />
     </application>
 
 </manifest>
