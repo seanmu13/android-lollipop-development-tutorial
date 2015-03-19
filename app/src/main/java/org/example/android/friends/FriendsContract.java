@@ -18,9 +18,7 @@ public class FriendsContract {
 
     private static final String PATH_FRIENDS = "friends";
 
-    public static final String[] TOP_LEVEL_PATHS = {
-            PATH_FRIENDS
-    };
+    public static final String[] TOP_LEVEL_PATHS = {PATH_FRIENDS};
 
     public static class Friends implements FriendsColumns, BaseColumns {
         public static final Uri CONTENT_URI =
@@ -33,7 +31,7 @@ public class FriendsContract {
             return CONTENT_URI.buildUpon().appendEncodedPath(friendId).build();
         }
 
-        public static String getFriendId(Uri uri){
+        public static String getFriendId(Uri uri) {
             return uri.getPathSegments().get(1);
         }
     }
