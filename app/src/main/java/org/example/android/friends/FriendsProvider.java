@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import android.text.TextUtils;
 import android.util.Log;
 
 /**
@@ -82,13 +83,61 @@ public class FriendsProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         Log.v(TAG, "insert(uri=" + uri + ", values=" + values.toString());
-        final SQLiteDatabase db = mOpenHelper.getReadableDatabase();
+        final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         final int match = sUriMatcher.match(uri);
 
         switch (match) {
             case FRIENDS:
                 long recordId = db.insertOrThrow(FriendsDatabase.Tables.FRIENDS, null, values);
                 return FriendsContract.Friends.buildFriendUri(String.valueOf(recordId));
+            default:
+                throw new IllegalArgumentException("Unknown Uri: " + uri);
+        }
+    }
+
+    @Override
+    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        Log.v(TAG, "update(uri=" + uri + ", values=" + values.toString());
+        final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+        final int match = sUriMatcher.match(uri);
+
+        String selectionCriteria = selection;
+
+        switch (match) {
+            case FRIENDS:
+                // do nothing
+                break;
+            case FRIENDS_ID:
+                String id = FriendsContract.Friends.getFriendId(uri);
+                selectionCriteria = BaseColumns._ID + "=" + id
+                        + (!TextUtils.isEmpty(selection) ? "AND (" + selection + ")" : "");
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown Uri: " + uri);
+        }
+
+        return db.update(FriendsDatabase.Tables.FRIENDS, values, selectionCriteria, selectionArgs);
+    }
+
+    @Override
+    public int delete(Uri uri, String selection, String[] selectionArgs) {
+        Log.v(TAG, "delete(uri=" + uri);
+
+        if (uri.equals(FriendsContract.BASE_CONTENT_URI)) {
+            deleteDatabase();
+            return 0;
+        }
+
+        final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+        final int match = sUriMatcher.match(uri);
+
+        switch (match) {
+            case FRIENDS_ID:
+                String id = FriendsContract.Friends.getFriendId(uri);
+                String selectionCriteria = BaseColumns._ID + "=" + id
+                        + (!TextUtils.isEmpty(selection) ? "AND (" + selection + ")" : "");
+                return db.delete(FriendsDatabase.Tables.FRIENDS, selectionCriteria, selectionArgs);
+            break;
             default:
                 throw new IllegalArgumentException("Unknown Uri: " + uri);
         }
