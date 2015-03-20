@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by seanmu13 on 3/19/2015.
  */
@@ -71,5 +73,14 @@ public class FriendsCustomAdapter extends ArrayAdapter<Friend> {
         });
 
         return view;
+    }
+
+    public void setData(List<Friend> friends){
+        clear();
+        if(friends != null){
+            for(Friend friend : friends){
+                add(friend);
+            }
+        }
     }
 }
