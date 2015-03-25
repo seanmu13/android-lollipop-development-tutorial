@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -17,10 +18,13 @@ import android.widget.TextView;
  * Created by seanmu13 on 3/20/2015.
  */
 public class FriendsDialog extends DialogFragment {
+
+    private static final String LOG_TAG = FriendsDialog.class.getSimpleName();
     private LayoutInflater mLayoutInflater;
     public static final String DIALOG_TYPE = "command";
     public static final String DELETE_RECORD = "deleteRecord";
     public static final String DELETE_DATABASE = "deleteDatabase";
+    public static final String CONFIRM_EXIT = "confirmExit";
 
     @NonNull
     @Override
@@ -45,7 +49,7 @@ public class FriendsDialog extends DialogFragment {
                     startActivity(intent);
                 }
             });
-        } else if(command.equals(DELETE_DATABASE)){
+        } else if (command.equals(DELETE_DATABASE)) {
             TextView popupMessage = (TextView) view.findViewById(R.id.popup_message);
             popupMessage.setText("Are you sure you wish to delete the entire database?");
             builder.setView(view).setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -59,7 +63,19 @@ public class FriendsDialog extends DialogFragment {
                     startActivity(intent);
                 }
             });
+        } else if (command.equals(CONFIRM_EXIT)) {
+            TextView popupMessage = (TextView) view.findViewById(R.id.popup_message);
+            popupMessage.setText("Are you sure you wish to exit without saving?");
+            builder.setView(view).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    getActivity().finish();
+                }
+            });
+        } else {
+            Log.d(LOG_TAG, "Invalid command passed as parameter");
         }
+
         return builder.create();
     }
 }
