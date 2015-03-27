@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by seanmu13 on 3/20/2015.
@@ -38,15 +39,23 @@ public class FriendsDialog extends DialogFragment {
             String name = getArguments().getString(FriendsContract.FriendsColumns.FRIENDS_NAME);
             TextView popupMessage = (TextView) view.findViewById(R.id.popup_message);
             popupMessage.setText("Are you sure you want to delete " + name + " from your friends list?");
+
             builder.setView(view).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(getActivity(), "Deleting record: " + _id, Toast.LENGTH_LONG).show();
                     ContentResolver contentResolver = getActivity().getContentResolver();
                     Uri uri = FriendsContract.Friends.buildFriendUri(String.valueOf(_id));
                     contentResolver.delete(uri, null, null);
                     Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+                }
+            })
+            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
                 }
             });
         } else if (command.equals(DELETE_DATABASE)) {
@@ -62,6 +71,12 @@ public class FriendsDialog extends DialogFragment {
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
+            })
+            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
             });
         } else if (command.equals(CONFIRM_EXIT)) {
             TextView popupMessage = (TextView) view.findViewById(R.id.popup_message);
@@ -70,6 +85,12 @@ public class FriendsDialog extends DialogFragment {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     getActivity().finish();
+                }
+            })
+            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
                 }
             });
         } else {
